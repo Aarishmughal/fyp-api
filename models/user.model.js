@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    displayName: {
       type: String,
       required: true,
     },
@@ -11,9 +11,23 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    password: {
+    phoneNumber: {
       type: String,
       required: true,
+      unique: true,
+    },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
+    avatar: {
+      type: String,
+      default: "default.png",
+    },
+    emailVerifiedAt: {
+      type: Date,
+      default: null,
     },
   },
   {
