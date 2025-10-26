@@ -2,27 +2,17 @@ const mongoose = require('mongoose');
 
 const authAccountSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      refPath: 'User',
-      required: true,
-    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     provider: {
       type: String,
-      required: true,
-      enum: ['password', 'google', 'sms_otp'],
-      default: 'password',
+      enum: ['email', 'google', 'github', 'azure'],
+      default: 'email',
     },
     providerUid: { type: String },
     passwordHash: { type: String },
-    meta: { type: Object, default: {} },
-    isActive: { type: Boolean, default: true },
+    status: { type: String, enum: ['active', 'revoked'], default: 'active' },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const AuthAccount = mongoose.model('AuthAccount', authAccountSchema);
-
-module.exports = AuthAccount;
+module.exports = mongoose.model('AuthAccount', authAccountSchema);

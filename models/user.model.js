@@ -1,40 +1,52 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
-    displayName: {
+    email: { type: String, required: true, unique: true, index: true },
+    phone: { type: String },
+    displayName: { type: String },
+    status: {
       type: String,
+      enum: ['active', 'inactive', 'banned'],
+      default: 'active',
+    },
+    emailVerifiedAt: { type: Date },
+    avatar: { type: String },
+    preferences: { type: Object },
+  },
+  { timestamps: true }
+);
+
+const userTenantSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
-    email: {
-      type: String,
+    tenantId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tenant',
       required: true,
-      unique: true,
     },
-    phoneNumber: {
+    role: {
       type: String,
-      required: true,
-      unique: true,
+      enum: ['owner', 'admin', 'staff', 'viewer'],
+      default: 'viewer',
     },
     status: {
       type: String,
-      enum: ["active", "inactive"],
-      default: "active",
+      enum: ['active', 'pending', 'removed'],
+      default: 'active',
     },
-    avatar: {
-      type: String,
-      default: "default.png",
-    },
-    emailVerifiedAt: {
-      type: Date,
-      default: null,
-    },
+    joined_at: { type: Date, default: Date.now },
   },
-  {
-    timestamps: true,
-  },
+  { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+userTenantSchema.index({ userId: 1, tenantId: 1 }, { unique: true });
 
-module.exports = User;
+const User = mongoose.model('User', userSchema);
+const UserTenant = mongoose.model('UserTenant', userTenantSchema);
+
+module.exports = { User, UserTenant };
