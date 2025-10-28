@@ -1,5 +1,5 @@
-const factory = require('./../utils/handlerFactory');
-const { Invoice } = require('./../models');
+const factory = require('../utils/handlerFactory');
+const { Invoice } = require('../models');
 
 exports.getAllInvoices = factory.getAll(Invoice);
 exports.getInvoice = factory.getOne(Invoice);
