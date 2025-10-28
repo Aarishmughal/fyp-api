@@ -1,15 +1,5 @@
 const mongoose = require('mongoose');
 
-const vitalTypeSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true, unique: true },
-    unit: { type: String },
-    normalRange: { type: String },
-    description: { type: String },
-  },
-  { timestamps: true }
-);
-
 const patientVitalItemSchema = new mongoose.Schema(
   {
     patientVital: {
@@ -18,10 +8,23 @@ const patientVitalItemSchema = new mongoose.Schema(
       required: true,
     },
     vitalType: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'VitalType',
+      type: String,
+      enum: [
+        'blood_pressure',
+        'heart_rate',
+        'temperature',
+        'respiratory_rate',
+        'oxygen_saturation',
+        'weight',
+        'height',
+        'bmi',
+      ],
       required: true,
     },
+    name: { type: String, required: true, unique: true },
+    unit: { type: String },
+    normalRange: { type: String },
+    description: { type: String },
     value: { type: String, required: true },
     status: { type: String, enum: ['normal', 'abnormal'], default: 'normal' },
     timestamp: { type: Date, default: Date.now },
@@ -52,9 +55,7 @@ const patientVitalSchema = new mongoose.Schema(
 
 patientVitalSchema.index({ patient: 1, tenant: 1 });
 patientVitalItemSchema.index({ patientVital: 1, vitalType: 1 });
-vitalTypeSchema.index({ name: 1 });
 
-const VitalType = mongoose.model('VitalType', vitalTypeSchema);
 const PatientVitalItem = mongoose.model(
   'PatientVitalItem',
   patientVitalItemSchema
@@ -62,7 +63,6 @@ const PatientVitalItem = mongoose.model(
 const PatientVital = mongoose.model('PatientVital', patientVitalSchema);
 
 module.exports = {
-  VitalType,
   PatientVitalItem,
   PatientVital,
 };

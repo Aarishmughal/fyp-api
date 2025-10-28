@@ -15,4 +15,6 @@ const authAccountSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('AuthAccount', authAccountSchema);
+const AuthAccount = mongoose.model('AuthAccount', authAccountSchema);
+
+module.exports = AuthAccount;

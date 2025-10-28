@@ -23,4 +23,6 @@ const facilitySchema = new mongoose.Schema(
 
 facilitySchema.index({ tenant: 1, displayName: 1 }, { unique: true });
 
-module.exports = mongoose.model('Facility', facilitySchema);
+const Facility = mongoose.model('Facility', facilitySchema);
+
+module.exports = Facility;

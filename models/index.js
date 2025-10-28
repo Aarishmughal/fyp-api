@@ -8,28 +8,37 @@ const connectMongo = async (DB_URI) => {
   return mongoose.connection;
 };
 
-const { User, UserTenant } = require('./User.model');
-const AuthAccount = require('./AuthAccount.model');
-const Invoice = require('./Invoice.model');
-const MedicalRecord = require('./MedicalRecord.model');
-const Tenant = require('./Tenant.model');
-const { Doctor, DoctorPatient } = require('./Doctor.model');
-const Nurse = require('./Nurse.model');
-const { Prescription, PrescriptionItem } = require('./Prescription.model');
-const Patient = require('./Patient.model');
 const Appointment = require('./Appointment.model');
+const AuthAccount = require('./AuthAccount.model');
+const { Doctor, DoctorPatient } = require('./Doctor.model');
+const Facility = require('./Facility.model');
+const { Invoice, InvoiceItem } = require('./Invoice.model');
+const MedicalRecord = require('./MedicalRecord.model');
+const Nurse = require('./Nurse.model');
+const { Patient, PatientTenant } = require('./Patient.model');
+const { PatientVitalItem, PatientVital } = require('./PatientVital.model');
+const { Prescription, PrescriptionItem } = require('./Prescription.model');
+const Tenant = require('./Tenant.model');
+const { User, UserTenant } = require('./User.model');
 
 module.exports = {
   connectMongo,
+  Appointment,
+  AuthAccount,
+  Doctor,
+  DoctorPatient,
+  Facility,
+  Invoice,
+  InvoiceItem,
+  MedicalRecord,
+  Nurse,
+  Patient,
+  PatientTenant,
+  PatientVital,
+  PatientVitalItem,
+  Prescription,
+  PrescriptionItem,
+  Tenant,
   User,
   UserTenant,
-  AuthAccount,
-  Invoice,
-  MedicalRecord,
-  Tenant,
-  Doctor,
-  Nurse,
-  Prescription,
-  Patient,
-  Appointment,
 };

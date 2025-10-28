@@ -32,5 +32,7 @@ const patientSchema = new mongoose.Schema(
 patientSchema.index({ patientCode: 1 });
 patientTenantSchema.index({ patient: 1, tenant: 1 }, { unique: true });
 
-module.exports = mongoose.model('Patient', patientSchema);
-module.exports = mongoose.model('PatientTenant', patientTenantSchema);
+const Patient = mongoose.model('Patient', patientSchema);
+const PatientTenant = mongoose.model('PatientTenant', patientTenantSchema);
+
+module.exports = { Patient, PatientTenant };

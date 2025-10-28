@@ -16,4 +16,6 @@ const nurseSchema = new mongoose.Schema(
 
 nurseSchema.index({ tenant: 1, user: 1 }, { unique: true });
 
-module.exports = mongoose.model('Nurse', nurseSchema);
+const Nurse = mongoose.model('Nurse', nurseSchema);
+
+module.exports = Nurse;

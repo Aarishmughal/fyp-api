@@ -1,4 +1,3 @@
-// models/Tenant.js
 const mongoose = require('mongoose');
 
 const tenantSchema = new mongoose.Schema(
@@ -19,4 +18,6 @@ const tenantSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Tenant', tenantSchema);
+const Tenant = mongoose.model('Tenant', tenantSchema);
+
+module.exports = Tenant;

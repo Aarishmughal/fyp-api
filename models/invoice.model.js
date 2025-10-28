@@ -1,5 +1,20 @@
 const mongoose = require('mongoose');
 
+const invoiceItemSchema = new mongoose.Schema(
+  {
+    invoice: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Invoice',
+      required: true,
+    },
+    description: { type: String, required: true },
+    quantity: { type: Number, required: true, default: 1 },
+    unitPrice: { type: Number, required: true },
+    totalPrice: { type: Number, required: true },
+  },
+  { timestamps: true }
+);
+
 const invoiceSchema = new mongoose.Schema(
   {
     tenant: {
@@ -32,6 +47,10 @@ const invoiceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+invoiceItemSchema.index({ invoice: 1 });
 invoiceSchema.index({ tenant: 1, patient: 1, doctor: 1 });
 
-module.exports = mongoose.model('Invoice', invoiceSchema);
+const InvoiceItem = mongoose.model('InvoiceItem', invoiceItemSchema);
+const Invoice = mongoose.model('Invoice', invoiceSchema);
+
+module.exports = { Invoice, InvoiceItem };

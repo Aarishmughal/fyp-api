@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const prescriptionItemSchema = new mongoose.Schema(
   {
     prescription: {
@@ -44,5 +45,10 @@ const prescriptionSchema = new mongoose.Schema(
 prescriptionSchema.index({ doctor: 1, patient: 1, appointment: 1 });
 prescriptionItemSchema.index({ prescription: 1 });
 
-module.exports = mongoose.model('PrescriptionItem', prescriptionItemSchema);
-module.exports = mongoose.model('Prescription', prescriptionSchema);
+const PrescriptionItem = mongoose.model(
+  'PrescriptionItem',
+  prescriptionItemSchema
+);
+const Prescription = mongoose.model('Prescription', prescriptionSchema);
+
+module.exports = { Prescription, PrescriptionItem };
