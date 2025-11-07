@@ -25,6 +25,6 @@ router.use('/prescriptions', prescriptionRouter);
 router.use('/tenants', tenantRouter);
 router.use('/users', userRouter);
 
-router.use('/auth', authRouter);
+// router.use('/auth', authRouter);
 
 module.exports = router;
