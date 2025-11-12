@@ -31,7 +31,7 @@ const userTenantSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['owner', 'admin', 'staff', 'viewer'],
+      enum: ['owner', 'staff', 'viewer'],
       default: 'viewer',
     },
     status: {

@@ -8,11 +8,12 @@ const connectMongo = async (DB_URI) => {
   return mongoose.connection;
 };
 
+const Admin = require('./Admin.model');
 const Appointment = require('./Appointment.model');
 const AuthAccount = require('./AuthAccount.model');
 const { Doctor, DoctorPatient } = require('./Doctor.model');
 const Facility = require('./Facility.model');
-const { Invoice, InvoiceItem } = require('./Invoice.model');
+const { Invoice, InvoiceItem } = require('./Iinvoice.model');
 const MedicalRecord = require('./MedicalRecord.model');
 const Nurse = require('./Nurse.model');
 const { Patient, PatientTenant } = require('./Patient.model');
@@ -22,6 +23,7 @@ const Tenant = require('./Tenant.model');
 const { User, UserTenant } = require('./User.model');
 
 module.exports = {
+  Admin,
   connectMongo,
   Appointment,
   AuthAccount,

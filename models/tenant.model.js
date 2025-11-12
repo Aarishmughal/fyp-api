@@ -5,10 +5,9 @@ const tenantSchema = new mongoose.Schema(
     displayName: { type: String, required: true },
     type: {
       type: String,
-      enum: ['hospital', 'clinic', 'lab', 'individual', 'other'],
-      default: 'other',
+      enum: ['hospital', 'clinic', 'lab', 'individual'],
+      default: 'individual',
     },
-    status: { type: String, enum: ['active', 'suspended'], default: 'active' },
     plan: {
       type: String,
       enum: ['free', 'pro', 'enterprise'],

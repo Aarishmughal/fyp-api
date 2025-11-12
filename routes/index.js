@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
+const adminRouter = require('./admin.route');
 const appointmentRouter = require('./appointment.route');
 const doctorRouter = require('./doctor.route');
 const facilityRouter = require('./facility.route');
@@ -14,6 +15,7 @@ const tenantRouter = require('./tenant.route');
 const userRouter = require('./user.route');
 const authRouter = require('./auth.route');
 
+router.use('/admin', adminRouter);
 router.use('/appointments', appointmentRouter);
 router.use('/doctors', doctorRouter);
 router.use('/facilities', facilityRouter);

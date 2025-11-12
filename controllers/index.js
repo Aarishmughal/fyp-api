@@ -1,3 +1,4 @@
+const adminController = require('./admin.controller');
 const appointmentController = require('./appointment.controller');
 const authController = require('./auth.controller');
 const doctorController = require('./doctor.controller');
@@ -11,6 +12,7 @@ const userController = require('./user.controller');
 const tenantController = require('./tenant.controller');
 
 module.exports = {
+  adminController,
   appointmentController,
   authController,
   doctorController,
